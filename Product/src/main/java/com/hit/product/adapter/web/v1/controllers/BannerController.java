@@ -28,25 +28,25 @@ public class BannerController {
     }
 
     @PostMapping("")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> createBanner(@RequestBody BannerDto bannerDto) {
         return VsResponseUtil.ok(bannerService.createBanner(bannerDto));
     }
 
     @PostMapping("/{id}/uploadImg")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> uploadImg(@PathVariable("id") Long id, @RequestParam("imgBanner") MultipartFile multipartFile) {
         return VsResponseUtil.ok(bannerService.uploadImgBanner(id, multipartFile));
     }
 
     @PatchMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> updateBanner(@PathVariable("id") Long id, @RequestBody BannerDto bannerDto) {
         return VsResponseUtil.ok(bannerService.updateBanner(id, bannerDto));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> deleteBanner(@PathVariable("id") Long id) {
         return VsResponseUtil.ok(bannerService.deleteBanner(id));
     }

@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/v1/users/register",
             "/auth/login",
             "/oauth2/**",
-            "/api/v1/**"
+            "/api/v1/**",
+            "/swagger-ui.html"
     };
 
 
@@ -81,23 +82,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers(USER_LIST_URLS).permitAll()
-                .antMatchers(ADMIN_LIST_URLS).hasAnyAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated()
+//                .antMatchers(USER_LIST_URLS).permitAll()
+//                .antMatchers(ADMIN_LIST_URLS).hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/**").permitAll()
+//                .anyRequest().authenticated()
                 .and()
-//                .formLogin()
-//                    .loginPage("/login")
-//                    .usernameParameter("username")
-//                    .permitAll()
-//                    .defaultSuccessUrl("/")
-//                .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .usernameParameter("username")
+                    .permitAll()
+                    .defaultSuccessUrl("/")
+                .and()
 
-//                .oauth2Login()
-//                    .loginPage("/login")
-//                    .userInfoEndpoint().userService(oAuth2UserService)
-//                    .and()
+                .oauth2Login()
+                    .loginPage("/login")
+                    .userInfoEndpoint().userService(oAuth2UserService)
+                    .and()
 //                .successHandler(oAuth2LoginSuccessHandler)
-//                .and()
+                .and()
                 .logout().permitAll()
                 .and()
                 .sessionManagement()

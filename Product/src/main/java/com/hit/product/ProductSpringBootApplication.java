@@ -32,21 +32,21 @@ public class ProductSpringBootApplication {
         SpringApplication.run(ProductSpringBootApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner init() {
-        return args -> {
-            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-            if(roleRepository.count() == 0) {
-                roleRepository.save(new Role(ERole.ROLE_ADMIN, null));
-                roleRepository.save(new Role(ERole.ROLE_MANAGER, null));
-                roleRepository.save(new Role(ERole.ROLE_USER, null));
-            }
-
-            if (userRepository.count() == 0) {
-                User user = new User("admin", passwordEncoder.encode("admin"), "admin@gmail.com", "Hanoi", roleRepository.findAll(), true);
-                userRepository.save(user);
-            }
-        };
-    }
+//    @Bean
+//    CommandLineRunner init() {
+//        return args -> {
+//            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//
+//            if(roleRepository.count() == 0) {
+//                roleRepository.save(new Role(ERole.ROLE_ADMIN, null));
+//                roleRepository.save(new Role(ERole.ROLE_MANAGER, null));
+//                roleRepository.save(new Role(ERole.ROLE_USER, null));
+//            }
+//
+//            if (userRepository.count() == 0) {
+//                User user = new User("admin", passwordEncoder.encode("admin"), "admin@gmail.com", "Hanoi", roleRepository.findAll(), true);
+//                userRepository.save(user);
+//            }
+//        };
+//    }
 }
