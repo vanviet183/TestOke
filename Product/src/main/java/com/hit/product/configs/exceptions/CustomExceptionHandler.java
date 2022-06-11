@@ -1,4 +1,4 @@
-package com.hit.product.applications.exceptions;
+package com.hit.product.configs.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,19 +1,14 @@
 package com.hit.product.applications.services.impl;
 
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
-import com.hit.product.applications.exceptions.NotFoundException;
-import com.hit.product.applications.repositories.BannerRepository;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.ImageRepository;
 import com.hit.product.applications.repositories.NewsRepository;
-import com.hit.product.applications.services.BannerService;
 import com.hit.product.applications.services.NewsService;
 import com.hit.product.applications.utils.UploadFile;
-import com.hit.product.domains.dtos.BannerDto;
 import com.hit.product.domains.dtos.NewsDto;
-import com.hit.product.domains.entities.Banner;
 import com.hit.product.domains.entities.Image;
 import com.hit.product.domains.entities.News;
-import com.hit.product.domains.entities.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.hit.product.applications.services.impl;
 
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
-import com.hit.product.applications.exceptions.NotFoundException;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.ProductRepository;
 import com.hit.product.applications.repositories.ProductSizeRepository;
 import com.hit.product.applications.services.ProductSizeService;

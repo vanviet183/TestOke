@@ -1,8 +1,9 @@
 package com.hit.product.applications.services.impl;
 
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
+import com.hit.product.applications.commons.AuthenticationProvider;
 import com.hit.product.applications.commons.ERole;
-import com.hit.product.applications.exceptions.NotFoundException;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.RoleRepository;
 import com.hit.product.applications.repositories.UserRepository;
 import com.hit.product.applications.repositories.VerificationTokenRepository;
@@ -10,6 +11,7 @@ import com.hit.product.applications.services.UserService;
 import com.hit.product.applications.utils.UploadFile;
 import com.hit.product.domains.dtos.UserDto;
 import com.hit.product.domains.entities.User;
+import com.hit.product.domains.entities.Voucher;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Service
@@ -57,10 +58,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerUser(UserDto userDto, final HttpServletRequest request) {
+    public User registerUser(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setRoles(Set.of(roleRepository.findByName(ERole.ROLE_USER).get()));
+        user.setRoles(List.of(roleRepository.findByName(ERole.ROLE_USER).get()));
 
         return userRepository.save(user);
     }
@@ -82,10 +83,10 @@ public class UserServiceImpl implements UserService {
         return new TrueFalseResponse(true);
     }
 
-//    @Override
-//    public User findUserByEmail(String email) {
-//        return userRepository.findByEmail(email);
-//    }
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     @Override
     public User findUserByUsername(String username) {
@@ -103,6 +104,36 @@ public class UserServiceImpl implements UserService {
         user.get().setAvatar(uploadFile.getUrlFromFile(multipartFile));
         userRepository.save(user.get());
         return user.get();
+    }
+
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void createNewUserAfterOAuthLoginSuccess(String email, String name, AuthenticationProvider provider) {
+        User user = new User();
+        user.setEmail(email);
+        user.setFirstName(name);
+        user.setAuthProvider(provider);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserAfterOAuthLoginSuccess(User user, String name, AuthenticationProvider provider) {
+        user.setFirstName(name);
+        user.setAuthProvider(provider);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<Voucher> getListVoucher(Long idUser) {
+        Optional<User> user = userRepository.findById(idUser);
+        checkUserException(user);
+        return user.get().getVouchers();
     }
 
     private void checkUserException(Optional<User> user) {

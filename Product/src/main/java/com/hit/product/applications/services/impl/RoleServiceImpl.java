@@ -1,7 +1,7 @@
 package com.hit.product.applications.services.impl;
 
 import com.hit.product.applications.commons.ERole;
-import com.hit.product.applications.exceptions.NotFoundException;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.RoleRepository;
 import com.hit.product.applications.services.RoleService;
 import com.hit.product.domains.dtos.RoleDto;

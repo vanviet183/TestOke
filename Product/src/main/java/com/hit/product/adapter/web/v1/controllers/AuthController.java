@@ -1,15 +1,25 @@
 package com.hit.product.adapter.web.v1.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.hit.product.adapter.web.base.VsResponseUtil;
+import com.hit.product.adapter.web.v1.transfer.parameters.auth.AuthenticationRequest;
+import com.hit.product.applications.constants.UrlConstant;
+import com.hit.product.applications.services.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("/api/v1/auth")
 public class AuthController {
 
-//    @GetMapping
-    // login
+    @Autowired
+    AuthService authService;
 
-    // log out
+    @PostMapping (UrlConstant.Auth.LOGIN)
+    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationRequest authenticationRequest) {
+        return VsResponseUtil.ok(authService.login(authenticationRequest));
+    }
 }

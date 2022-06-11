@@ -15,7 +15,8 @@ import java.util.List;
 public class AuthenticationResponse {
 
     private String jwt;
-    private Long userId;
+//    private Long userId;
     private String username;
+
     private List<Role> roleList;
 }

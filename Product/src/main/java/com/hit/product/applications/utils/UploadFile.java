@@ -2,7 +2,7 @@ package com.hit.product.applications.utils;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.hit.product.applications.exceptions.UploadFileException;
+import com.hit.product.configs.exceptions.UploadFileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,4 +1,4 @@
-package com.hit.product.applications.exceptions;
+package com.hit.product.configs.exceptions;
 
 public class UploadFileException extends RuntimeException {
     public UploadFileException(String message) {

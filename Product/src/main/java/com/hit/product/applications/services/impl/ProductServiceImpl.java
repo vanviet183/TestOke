@@ -2,19 +2,16 @@ package com.hit.product.applications.services.impl;
 
 import com.github.slugify.Slugify;
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
-import com.hit.product.applications.exceptions.NotFoundException;
-import com.hit.product.applications.repositories.CategoryRepository;
-import com.hit.product.applications.repositories.ImageRepository;
-import com.hit.product.applications.repositories.ProductRepository;
+import com.hit.product.applications.repositories.*;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.services.ProductService;
 import com.hit.product.applications.utils.UploadFile;
-import com.hit.product.domains.dtos.CategoryDto;
 import com.hit.product.domains.dtos.ProductDto;
-import com.hit.product.domains.entities.Category;
-import com.hit.product.domains.entities.Image;
-import com.hit.product.domains.entities.Product;
+import com.hit.product.domains.entities.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,6 +37,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     UploadFile uploadFile;
+
+    @Autowired
+    ProductSizeRepository productSizeRepository;
+
+    @Autowired
+    ProductColorRepository productColorRepository;
 
     @Override
     public List<Product> getAll() {
@@ -115,6 +118,45 @@ public class ProductServiceImpl implements ProductService {
             imageList.add(createImgProduct(product.get(), new Image(), multipartFile));
         });
         return imageList;
+    }
+
+
+    // Sort
+    @Override
+    public List<Product> getProductsSort(Long numb) {
+        List<Product> products = new ArrayList<>();
+        if (numb == 1) {
+            return productRepository.findAll(PageRequest.of(1, 10, Sort.by("title").ascending())).getContent();
+        } else if (numb == 2) {
+            return productRepository.findAll(PageRequest.of(1, 10, Sort.by("title").descending())).getContent();
+        } else if (numb == 3) {
+            return productRepository.findAll(PageRequest.of(1, 10, Sort.by("price").ascending())).getContent();
+        } else if (numb == 4) {
+            return productRepository.findAll(PageRequest.of(1, 10, Sort.by("price").descending())).getContent();
+        }
+        return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> getProductsBySize(Integer value) {
+        List<ProductSize> productSizes = productSizeRepository.findByValue(value);
+        List<Product> products = new ArrayList<>();
+        productSizes.forEach(item -> {
+            products.add(item.getProduct());
+        });
+        return products;
+    }
+
+    @Override
+    public List<Product> getProductsByColor(String color) {
+        Slugify slug = new Slugify();
+        String result = slug.slugify(color);
+        List<ProductColor> productColors = productColorRepository.findBySlug(result);
+        List<Product> products = new ArrayList<>();
+        productColors.forEach(item -> {
+            products.add(item.getProduct());
+        });
+        return products;
     }
 
     public Image createImgProduct(Product product, Image image, MultipartFile multipartFile) {

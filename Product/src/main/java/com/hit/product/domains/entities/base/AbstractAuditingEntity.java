@@ -22,10 +22,10 @@ public abstract class AbstractAuditingEntity {
     private Long id;
 
     @CreationTimestamp
-    private Timestamp created;
+    private Timestamp createdDate;
 
     @UpdateTimestamp
-    private Timestamp updated;
+    private Timestamp updatedDate;
 
     @Column(name = "active_flag")
     private Boolean activeFlag = Boolean.TRUE;

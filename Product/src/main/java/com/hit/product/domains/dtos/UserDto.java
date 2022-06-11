@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -29,33 +30,32 @@ public class UserDto {
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String address;
 
-    @NotBlank(message = "hihi")
-//    @Length(max = Common.STRING_LENGTH_LIMIT)
-//    @Length(max = 20, message = "Too long")
-//    @Size(max = 20, message = "Too long")
+    @NotBlank()
+    @Length(max = Common.STRING_LENGTH_LIMIT)
+    @Size(min = 6, max = 20, message = "Too long")
     private String username;
 
     @NotBlank
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&_]{8,255}$", message = "is invalid")
     private String password;
 
-    @NotBlank
+//    @NotBlank
     @Email
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String email;
 
-    @NotBlank
+//    @NotBlank
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String phone;
 
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String avatar;
 
-    @NotBlank
+//    @NotBlank
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String birthday;
 
-    @NotBlank
+//    @NotBlank
     @Length(max = Common.STRING_LENGTH_LIMIT)
     private String gender;
 

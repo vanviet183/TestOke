@@ -2,7 +2,7 @@ package com.hit.product.applications.services.impl;
 
 import com.github.slugify.Slugify;
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
-import com.hit.product.applications.exceptions.NotFoundException;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.CategoryRepository;
 import com.hit.product.applications.services.CategoryService;
 import com.hit.product.domains.dtos.CategoryDto;

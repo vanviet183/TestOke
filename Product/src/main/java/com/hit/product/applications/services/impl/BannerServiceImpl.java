@@ -1,17 +1,12 @@
 package com.hit.product.applications.services.impl;
 
-import com.github.slugify.Slugify;
 import com.hit.product.adapter.web.v1.transfer.responses.TrueFalseResponse;
-import com.hit.product.applications.exceptions.NotFoundException;
+import com.hit.product.configs.exceptions.NotFoundException;
 import com.hit.product.applications.repositories.BannerRepository;
 import com.hit.product.applications.services.BannerService;
 import com.hit.product.applications.utils.UploadFile;
 import com.hit.product.domains.dtos.BannerDto;
-import com.hit.product.domains.dtos.ProductDto;
 import com.hit.product.domains.entities.Banner;
-import com.hit.product.domains.entities.Category;
-import com.hit.product.domains.entities.Product;
-import com.hit.product.domains.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

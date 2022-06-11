@@ -1,5 +1,6 @@
 package com.hit.product.adapter.web.v1.controllers;
 
+import com.hit.product.adapter.web.base.VsResponseUtil;
 import com.hit.product.applications.services.EmailSenderService;
 import com.hit.product.applications.services.VerificationTokenService;
 import com.hit.product.domains.entities.User;
@@ -23,18 +24,18 @@ public class VerifyTokenController {
     public ResponseEntity<?> verifyRegistration(@RequestParam("token") String token) {
         String request = verificationTokenService.validateVerificationToken(token);
         if(request.equalsIgnoreCase("valid")) {
-            return ResponseEntity.ok().body("User Verifies Successfully");
+            return VsResponseUtil.ok("User Verifies Successfully");
         }
-        return ResponseEntity.ok().body("Bad User");
+        return VsResponseUtil.ok("Bad User");
     }
 
     @GetMapping("/verifyEmailNotification")
     public ResponseEntity<?> verifyEmailNotification(@RequestParam("token") String token) {
         String request = verificationTokenService.validateVerificationEmailNotificationToken(token);
         if(request.equalsIgnoreCase("valid")) {
-            return ResponseEntity.ok().body("Email Notification Verifies Successfully");
+            return VsResponseUtil.ok("Email Notification Verifies Successfully");
         }
-        return ResponseEntity.ok().body("Error");
+        return VsResponseUtil.ok("Error");
     }
 
     @GetMapping("/resendVerifyToken")
@@ -42,7 +43,7 @@ public class VerifyTokenController {
         VerificationToken verificationToken = verificationTokenService.generateNewVerificationToken(oldToken);
         User user = verificationToken.getUser();
         verificationTokenService.resendVerificationTokenMail(user, applicationUrl(request), verificationToken);
-        return ResponseEntity.ok().body("Verification Link Sent");
+        return VsResponseUtil.ok("Verification Link Sent");
     }
 
     private String applicationUrl(HttpServletRequest request) {

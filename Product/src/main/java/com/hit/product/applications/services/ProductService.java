@@ -27,4 +27,10 @@ public interface ProductService {
     List<Product> searchProducts(String nameProduct);
 
     List<Image> uploadProductImages(Long id, List<MultipartFile> multipartFiles);
+
+    List<Product> getProductsSort(Long numb);
+
+    List<Product> getProductsBySize(Integer value);
+
+    List<Product> getProductsByColor(String color);
 }

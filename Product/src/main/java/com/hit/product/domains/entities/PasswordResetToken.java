@@ -31,7 +31,7 @@ public class PasswordResetToken {
     private Boolean status = Boolean.FALSE;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id",
+    @JoinColumn(name = "id_user",
                 nullable = false,
                 foreignKey = @ForeignKey(name = "FK_USER_PASSWORD_TOKEN"))
     private User user;

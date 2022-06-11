@@ -28,7 +28,9 @@ public class Product extends AbstractAuditingEntity {
     @Nationalized
     private String longDescription;
 
-    private Double price;
+    private Double priceOld;
+
+    private Double priceCurrent;
 
     private String slug;
 
@@ -51,7 +53,14 @@ public class Product extends AbstractAuditingEntity {
     private List<ProductColor> productColors;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-//    @JsonIgnore
+    @JsonIgnore
     private List<Image> images;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    @JsonIgnore
+    private List<ProductRate> productRates;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "product")
+    @JsonIgnore
+    private List<DetailBill> detailBills;
 }
