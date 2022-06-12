@@ -20,7 +20,8 @@ public class ProductController {
 
     @GetMapping("")
     public ResponseEntity<?> getProducts() {
-        return VsResponseUtil.ok(productService.getAll());
+//        return VsResponseUtil.ok(productService.getAll());
+        return ResponseEntity.ok().body(productService.getAll());
     }
 
     @GetMapping("/sort/{numb}")
