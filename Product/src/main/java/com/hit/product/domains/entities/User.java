@@ -64,10 +64,11 @@ public class User extends AbstractAuditingEntity {
     @Enumerated(EnumType.STRING)
     private AuthenticationProvider authProvider;
 
-    public User(String username, String password, String email, String address, List<Role> roles, Boolean status) {
+    public User(String username, String password, String email, String phone, String address, List<Role> roles, Boolean status) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.roles = roles;
         this.status = status;

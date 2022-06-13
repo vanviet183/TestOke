@@ -45,7 +45,7 @@ public class UserDto {
     private String email;
 
 //    @NotBlank
-    @Length(max = Common.STRING_LENGTH_LIMIT)
+//    @Length(max = Common.STRING_LENGTH_LIMIT)
     private String phone;
 
     @Length(max = Common.STRING_LENGTH_LIMIT)
