@@ -109,6 +109,8 @@ public class UrlConstant {
 
     private static final String PRE_FIX = "/auth";
     public static final String LOGIN = PRE_FIX + "/login";
+    public static final String GOOGLE = PRE_FIX + "/login/google";
+    public static final String FACEBOOK = PRE_FIX + "/login/facebook";
     public static final String SIGNUP = PRE_FIX + "/signup";
     public static final String VALIDATE = PRE_FIX + "/validate";
     public static final String LOGOUT = PRE_FIX + "/logout/{id}";

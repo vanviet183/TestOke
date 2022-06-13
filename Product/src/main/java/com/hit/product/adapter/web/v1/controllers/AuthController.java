@@ -18,7 +18,7 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
-    @PostMapping (UrlConstant.Auth.LOGIN)
+    @PostMapping (UrlConstant.Auth.GOOGLE)
     public ResponseEntity<?> login(@RequestBody @Valid AuthenticationRequest authenticationRequest) {
         return VsResponseUtil.ok(authService.login(authenticationRequest));
     }
