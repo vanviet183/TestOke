@@ -23,6 +23,7 @@ public class Image extends AbstractAuditingEntity {
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_product")
+    @JsonIgnore
     private Product product;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

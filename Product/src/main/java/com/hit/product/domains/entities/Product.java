@@ -53,7 +53,6 @@ public class Product extends AbstractAuditingEntity {
     private List<ProductColor> productColors;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-    @JsonIgnore
     private List<Image> images;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
