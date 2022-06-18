@@ -80,10 +80,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Long idCategory, Long id, ProductDto productDto) {
+    public Product updateProduct(Long id, ProductDto productDto) {
         Optional<Product> product = productRepository.findById(id);
         checkProductException(product);
-        return createOrUpdate(idCategory, product.get(), productDto);
+        modelMapper.map(productDto, product.get());
+
+        Slugify slug = new Slugify();
+        String result = slug.slugify(productDto.getTitle());
+        product.get().setSlug(result);
+
+        return productRepository.save(product.get());
     }
 
     private Product createOrUpdate(Long idCategory, Product product, ProductDto productDto) {

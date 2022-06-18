@@ -79,9 +79,9 @@ public class ProductController {
         return VsResponseUtil.ok(productService.uploadProductImages(id, multipartFiles));
     }
 
-    @PatchMapping("/{idCategory}/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable("idCategory") Long idCategory, @PathVariable("id") Long id, @RequestBody ProductDto productDto) {
-        return VsResponseUtil.ok(productService.updateProduct(idCategory, id, productDto));
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
+        return VsResponseUtil.ok(productService.updateProduct(id, productDto));
     }
 
     @DeleteMapping("/{id}")
