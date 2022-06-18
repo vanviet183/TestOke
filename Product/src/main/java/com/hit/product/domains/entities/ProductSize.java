@@ -1,5 +1,6 @@
 package com.hit.product.domains.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hit.product.domains.entities.base.AbstractAuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +23,6 @@ public class ProductSize extends AbstractAuditingEntity {
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_product")
+    @JsonIgnore
     private Product product;
 }

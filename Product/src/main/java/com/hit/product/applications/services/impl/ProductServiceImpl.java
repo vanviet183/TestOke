@@ -50,6 +50,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductsNewest() {
+        return productRepository.findAll(PageRequest.of(1, 10, Sort.by("createdDate").descending())).getContent();
+    }
+
+    @Override
+    public List<Product> getProductsBestSeller() {
+        return productRepository.findAll(PageRequest.of(1, 10, Sort.by("amountSell").descending())).getContent();
+    }
+
+    @Override
     public Product getProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);
         checkProductException(product);

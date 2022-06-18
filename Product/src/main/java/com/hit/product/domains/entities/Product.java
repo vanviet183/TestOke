@@ -40,16 +40,18 @@ public class Product extends AbstractAuditingEntity {
 
     private String gender;
 
+    private Boolean isSale;
+
+    private Long amountSell;
+
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category")
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-    @JsonIgnore
     private List<ProductSize> productSizes;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-    @JsonIgnore
     private List<ProductColor> productColors;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")

@@ -24,6 +24,16 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getAll());
     }
 
+    @GetMapping("/news")
+    public ResponseEntity<?> getProductsNewest() {
+        return ResponseEntity.ok().body(productService.getProductsNewest());
+    }
+
+    @GetMapping("/sell")
+    public ResponseEntity<?> getProductsBestSeller() {
+        return ResponseEntity.ok().body(productService.getProductsBestSeller());
+    }
+
     @GetMapping("/sort/{numb}")
     public ResponseEntity<?> getProductsSort(@PathVariable("numb") Long numb) {
         return VsResponseUtil.ok(productService.getProductsSort(numb));

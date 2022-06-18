@@ -33,4 +33,8 @@ public interface ProductService {
     List<Product> getProductsBySize(Integer value);
 
     List<Product> getProductsByColor(String color);
+
+    List<Product> getProductsNewest();
+
+    List<Product> getProductsBestSeller();
 }
