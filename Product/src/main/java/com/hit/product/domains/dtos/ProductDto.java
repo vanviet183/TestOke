@@ -25,4 +25,8 @@ public class ProductDto {
 
     private String gender;
 
+    private Boolean isSale;
+
+    private Long amountSell;
+
 }

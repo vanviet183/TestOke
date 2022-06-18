@@ -53,10 +53,6 @@ public class UserDto {
 
 //    @NotBlank
     @Length(max = Common.STRING_LENGTH_LIMIT)
-    private String birthday;
-
-//    @NotBlank
-    @Length(max = Common.STRING_LENGTH_LIMIT)
     private String gender;
 
 }

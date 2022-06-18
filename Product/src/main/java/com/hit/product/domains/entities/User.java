@@ -55,8 +55,6 @@ public class User extends AbstractAuditingEntity {
 
     private String avatar;
 
-    private String birthday;
-
     private String gender;
 
     private Double scores;
