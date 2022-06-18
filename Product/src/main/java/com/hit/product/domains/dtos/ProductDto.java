@@ -17,7 +17,9 @@ public class ProductDto {
 
     private String longDescription;
 
-    private Double price;
+    private Double priceOld;
+
+    private Double priceCurrent;
 
     private String brand;
 
